@@ -1,0 +1,12 @@
+.flow-field-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+
+    canvas {
+        height: 100%;
+        width: 100%;
+    }
+}

@@ -1,0 +1,59 @@
+---
+# Name of the section displayed in the editor UI
+# (only if keep_name is set to true)
+name: Flow field
+
+# By default, the first text type setting will be used as
+# the name of the section in the editor UI.
+# To keep the name of the section instead, uncomment the following line.
+# keep_name: true
+
+# Icon of the section in the editor UI
+# Values: header, default, slide, text, image_text, list, footer
+icon: header
+
+# By default, the first image_picker type setting will be used
+# as the icon of the section in the editor UI.
+# To keep the icon of the section instead, uncomment the following line.
+# keep_icon: true
+
+# Definition of the settings:
+# A setting type can be one of the following values: text, image_picker, checkbox, radio, select, url, hint, content_type.
+# Please visit: https://doc.locomotivecms.com/docs/json-definition for more explanation.
+settings:
+- label: "Show"
+  id: show_flow_field
+  type: 
+  # html: true
+  # line_break: true
+  default: "Aut qui itaque mollitia."
+- label: "An image"
+  id: image
+  type: image_picker
+  default: "/samples/images/default.svg"
+# Definition of the blocks.
+# You can define as many types of blocks as you want.
+blocks: 
+- name: "List item"
+  type: list_item
+  settings:
+  - label: "Item title"
+    id: title
+    type: text
+    # html: true
+    # line_break: true
+    default: "Rerum occaecati quis dolor."
+  - label: "Item image"
+    id: image
+    type: image_picker
+    default: "/samples/images/default.svg"
+
+# By default, in the editor UI, blocks will be listed below the "Content" title.
+# The title can be changed with the following property:
+# blocks_label: "My list of items"
+
+
+---
+<div id="{{ section.anchor_id }}" class="flow-field-section" {{ section.locomotive_attributes }}>
+  <canvas id="field"></canvas>  
+</div>
