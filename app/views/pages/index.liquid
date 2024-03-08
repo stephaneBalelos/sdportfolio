@@ -2,6 +2,11 @@
 title: Home page
 handle: index
 published: true
+
+sections_content:
+  hero_header:
+    settings:
+      title: "Innovative Software Developer building everyday with Passion."
 ---
 {% extends 'layouts/default' %}
 
@@ -9,5 +14,6 @@ published: true
 
 {% global_section 'flow_field' %}
 {% global_section 'navigation' %}
+{% section 'hero_header' %}
 
 {% endblock %}

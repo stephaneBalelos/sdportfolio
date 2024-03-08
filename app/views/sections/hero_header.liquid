@@ -1,0 +1,98 @@
+---
+# Name of the section displayed in the editor UI
+# (only if keep_name is set to true)
+name: Hero header
+
+# By default, the first text type setting will be used as
+# the name of the section in the editor UI.
+# To keep the name of the section instead, uncomment the following line.
+# keep_name: true
+
+# Icon of the section in the editor UI
+# Values: header, default, slide, text, image_text, list, footer
+icon: header
+
+# By default, the first image_picker type setting will be used
+# as the icon of the section in the editor UI.
+# To keep the icon of the section instead, uncomment the following line.
+# keep_icon: true
+
+# Definition of the settings:
+# A setting type can be one of the following values: text, image_picker, checkbox, radio, select, url, hint, content_type.
+# Please visit: https://doc.locomotivecms.com/docs/json-definition for more explanation.
+settings:
+- label: "My awesome title"
+  id: title
+  type: text
+  # html: true
+  # line_break: true
+
+
+# By default, in the editor UI, blocks will be listed below the "Content" title.
+
+
+---
+{% comment %}
+Above is the YAML definition of your section. Modify it to match your needs.
+
+To use your section, 2 possibilities:
+
+1. within a dropzone
+
+Make sure that your layouts or your page includes the following liquid tag:
+
+  {% sections_dropzone %}
+
+If you want to test this section in your Wagon site, add the following
+lines in the YAML section of any page including the {% sections_dropzone %}
+(or inheriting from a layout including it):
+
+sections_dropzone_content:
+- type: "hero_header"
+  settings:
+    title: "Rem ullam molestiae qui."
+    image: "/samples/images/default.svg"
+  blocks: 
+  - type: list_item
+    settings:
+      title: "Voluptas expedita qui aliquam."
+      image: "/samples/images/default.svg"
+  - type: list_item
+    settings:
+      title: "Omnis et distinctio perspiciatis."
+      image: "/samples/images/default.svg"
+  - type: list_item
+    settings:
+      title: "Similique dignissimos laborum reprehenderit."
+      image: "/samples/images/default.svg"
+
+2. as stand-alone section
+
+  {% section 'hero_header' %}
+
+If you want to test this section in your Wagon site, add the following
+lines in the YAML section of the page including the statement above or complete it.
+
+sections_content:
+  hero_header:
+    settings:
+      title: "Nihil illo eos distinctio."
+      image: "/samples/images/default.svg"
+    blocks: 
+    - type: list_item
+      settings:
+        title: "Sequi qui autem necessitatibus."
+        image: "/samples/images/default.svg"
+    - type: list_item
+      settings:
+        title: "Quasi incidunt porro sed."
+        image: "/samples/images/default.svg"
+    - type: list_item
+      settings:
+        title: "Explicabo sed perferendis repellendus."
+        image: "/samples/images/default.svg"
+
+{% endcomment %}
+<div id="{{ section.anchor_id }}" class="hero-header-section container" {{ section.locomotive_attributes }}>
+  <div hero-header class="hero-title">{{ section.settings.title }}</div>
+</div>
