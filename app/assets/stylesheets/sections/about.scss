@@ -1,0 +1,18 @@
+.about-section {
+    .about-title {
+        font-size: 2rem;
+        letter-spacing: .04em;
+        font-weight: 900;
+        color: #1a1a1a;
+
+        text-decoration: none;
+        line-height: 1;
+        color: #939393;
+        display: inline-block;
+
+        background: linear-gradient(to right, #4BC973, #4BC973 50%, #050607 50%);
+        background-clip: text;
+        background-size: 200% 100%;
+        background-position: 100%;
+    }
+}
