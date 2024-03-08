@@ -1,0 +1,163 @@
+---
+# Name of the section displayed in the editor UI
+# (only if keep_name is set to true)
+name: Work
+
+# By default, the first text type setting will be used as
+# the name of the section in the editor UI.
+# To keep the name of the section instead, uncomment the following line.
+# keep_name: true
+
+# Icon of the section in the editor UI
+# Values: header, default, slide, text, image_text, list, footer
+icon: text
+
+# By default, the first image_picker type setting will be used
+# as the icon of the section in the editor UI.
+# To keep the icon of the section instead, uncomment the following line.
+# keep_icon: true
+
+# Definition of the settings:
+# A setting type can be one of the following values: text, image_picker, checkbox, radio, select, url, hint, content_type.
+# Please visit: https://doc.locomotivecms.com/docs/json-definition for more explanation.
+settings:
+- label: "My awesome title"
+  id: title
+  type: text
+  # html: true
+  # line_break: true
+  
+- label: "An image"
+  id: image
+  type: image_picker
+  
+# Definition of the blocks.
+# You can define as many types of blocks as you want.
+blocks: 
+- name: "List item"
+  type: list_item
+  settings:
+  - label: "Item title"
+    id: title
+    type: text
+    # html: true
+    # line_break: true
+    default: "Accusamus dolorem quidem rem."
+  - label: "Item image"
+    id: image
+    type: image_picker
+    default: "/samples/images/default.svg"
+
+# By default, in the editor UI, blocks will be listed below the "Content" title.
+# The title can be changed with the following property:
+# blocks_label: "My list of items"
+
+# Presets can be seen as different versions of a same section.
+# Useless if the section is not aimed to be used along with section_dropzone liquid tag
+presets:
+  - name: "Work"
+    category: "Category"
+    settings:
+      title: "Delectus fugit veritatis error."
+      image: "/samples/images/default.svg"
+    blocks: 
+    - type: list_item
+      settings:
+        title: "Fugiat velit est numquam."
+        image: "/samples/images/default.svg"
+    - type: list_item
+      settings:
+        title: "Inventore non blanditiis neque."
+        image: "/samples/images/default.svg"
+    - type: list_item
+      settings:
+        title: "Atque assumenda laboriosam ipsam."
+        image: "/samples/images/default.svg"
+
+---
+{% comment %}
+Above is the YAML definition of your section. Modify it to match your needs.
+
+To use your section, 2 possibilities:
+
+1. within a dropzone
+
+Make sure that your layouts or your page includes the following liquid tag:
+
+  {% sections_dropzone %}
+
+If you want to test this section in your Wagon site, add the following
+lines in the YAML section of any page including the {% sections_dropzone %}
+(or inheriting from a layout including it):
+
+sections_dropzone_content:
+- type: "work"
+  settings:
+    title: "Eum ipsam repudiandae veniam."
+    image: "/samples/images/default.svg"
+  blocks: 
+  - type: list_item
+    settings:
+      title: "Eligendi beatae ut qui."
+      image: "/samples/images/default.svg"
+  - type: list_item
+    settings:
+      title: "Quia reprehenderit in aliquam."
+      image: "/samples/images/default.svg"
+  - type: list_item
+    settings:
+      title: "Natus consequuntur earum corporis."
+      image: "/samples/images/default.svg"
+
+2. as stand-alone section
+
+  {% section 'work' %}
+
+If you want to test this section in your Wagon site, add the following
+lines in the YAML section of the page including the statement above or complete it.
+
+sections_content:
+  work:
+    settings:
+      title: "Rerum incidunt aperiam autem."
+      image: "/samples/images/default.svg"
+    blocks: 
+    - type: list_item
+      settings:
+        title: "Veniam voluptas nobis pariatur."
+        image: "/samples/images/default.svg"
+    - type: list_item
+      settings:
+        title: "Quas blanditiis aut dolores."
+        image: "/samples/images/default.svg"
+    - type: list_item
+      settings:
+        title: "Sit ut quis autem."
+        image: "/samples/images/default.svg"
+
+{% endcomment %}
+<div id="{{ section.anchor_id }}" class="work-section" {{ section.locomotive_attributes }}>
+  <h2>Section : Work</h2>
+
+  <hr/>
+
+  <h3>Settings</h3>
+
+  <div>{{ section.settings.title }}</div>
+  <p><img src="{{ section.settings.image }}" /></p>
+
+    <hr/>
+
+  <h3>Blocks</h3>
+  <ul>
+    {% for block in section.blocks %}
+    <li {{ block.locomotive_attributes }} data-index="{{ forloop.index0 }}">
+      <h4>Settings for List item</h4>
+
+      <div>{{ block.settings.title }}</div>
+      <p><img src="{{ block.settings.image }}" /></p>
+    </li>
+    {% endfor %}
+  </ul>
+  
+</div>
