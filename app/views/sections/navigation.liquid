@@ -1,0 +1,42 @@
+---
+# Name of the section displayed in the editor UI
+# (only if keep_name is set to true)
+name: Navigation
+
+# By default, the first text type setting will be used as
+# the name of the section in the editor UI.
+# To keep the name of the section instead, uncomment the following line.
+# keep_name: true
+
+# Icon of the section in the editor UI
+# Values: header, default, slide, text, image_text, list, footer
+icon: header
+
+# By default, the first image_picker type setting will be used
+# as the icon of the section in the editor UI.
+# To keep the icon of the section instead, uncomment the following line.
+# keep_icon: true
+
+# Definition of the settings:
+# A setting type can be one of the following values: text, image_picker, checkbox, radio, select, url, hint, content_type.
+# Please visit: https://doc.locomotivecms.com/docs/json-definition for more explanation.
+settings:
+- label: "My awesome title"
+  id: title
+  type: text
+  # html: true
+  # line_break: true
+  default: "Quos fuga rerum quidem."
+
+
+
+---
+<nav id="{{ section.anchor_id }}" class="navigation-section container" {{ section.locomotive_attributes }}>
+  <a class="nav-brand" href="{% path_to index %}">Stephane<span extra-name> Michel</span><span extra-name> Ange,</span> Dondyas<span extra-name> Imepino</span> <span cursor>|</span></a>
+  <ul class="nav-list">
+    <li class="nav-item">Work</li>
+    <li class="nav-item">About</li>
+    <li class="nav-item">Contact</li>
+  </ul>
+  
+</nav>

@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', event => {
   const sectionsManager = new SectionsManager();
 
   // Register sections here. DO NOT REMOVE OR UPDATE THIS LINE
+  sectionsManager.registerSection('navigation', Sections.Navigation);
   sectionsManager.registerSection('flow_field', Sections.FlowField);
 
   sectionsManager.start();

@@ -1,0 +1,46 @@
+.navigation-section {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    margin-top: .5rem;
+    overflow: hidden;
+
+    .nav-brand {
+        text-decoration: none;
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: $body-color;
+
+    }
+
+    .nav-list {
+        list-style: none;
+        font-size: 1.5rem;
+        text-align: right;
+        font-weight: 400;
+        position: absolute;
+        top: 0;
+        right: .5rem;
+    }
+
+
+    span {
+        display: none;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .navigation-section {
+        margin-top: .75rem;
+
+        .nav-list {
+            position: relative;
+            display: flex;
+            gap: 1rem;
+            
+        }
+    }
+}
