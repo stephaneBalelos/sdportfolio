@@ -1,15 +1,15 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger)
 
 
 const initLenis = () => {
     const lenis = new Lenis()
 
-    gsap.registerPlugin(ScrollTrigger)
 
 
     lenis.on('scroll', (e) => {
-    console.log(e)
+    // console.log(e)
     })
 
     lenis.on('scroll', ScrollTrigger.update)

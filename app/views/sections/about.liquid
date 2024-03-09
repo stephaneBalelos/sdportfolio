@@ -95,12 +95,12 @@ sections_content:
 
 {% endcomment %}
 <div id="{{ section.anchor_id }}" class="about-section container" {{ section.locomotive_attributes }}>
-  <div class="row">
+  <div class="row align-items-center">
     <div class="col-lg-8">
       <h1 class="about-title">{{ section.settings.about_text }}</h1>
     </div>
     <div class="col-lg-4">
-      <img class="img-fluid" src="{{ section.settings.my_photo }}" alt="Stephane Dondyas">
+      <img class="img-fluid d-md-block mx-auto" src="{{ section.settings.my_photo }}" alt="Stephane Dondyas">
     </div>
   </div>  
 </div>
