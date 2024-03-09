@@ -15,4 +15,10 @@
             line-height: 1em;
         }
     }
+
+    @include media-breakpoint-up (lg) {
+        .hero-title {
+            font-size: 1.6rem;
+        }
+    }
 }
