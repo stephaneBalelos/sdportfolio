@@ -1,10 +1,11 @@
 // Wagon main stylesheet file
 @import "global/variables";
+@import 'global/bootstrap';
 @import "global/base";
 @import "global/typography";
-@import '~bootstrap/scss/bootstrap.scss';
 
 // Register sections here. DO NOT REMOVE OR UPDATE THIS LINE
+@import 'sections/contact';
 @import 'sections/work';
 @import 'sections/about';
 @import 'sections/hero_header';

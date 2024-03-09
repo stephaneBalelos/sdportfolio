@@ -1,0 +1,12 @@
+.contact-section {
+    min-height: 100vh;
+    display: grid;
+    place-content: center;
+    h2 {
+        font-size: 3rem;
+    }
+
+    .links {
+        text-align: center;
+    }
+}
