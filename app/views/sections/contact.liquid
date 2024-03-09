@@ -40,22 +40,29 @@ To use your global section, just add the following code in your layout template:
   {% global_section 'contact' %}
 
 {% endcomment %}
-<div id="{{ section.anchor_id }}" class="contact-section container" {{ section.locomotive_attributes }}>
-  <div class="row justify-content-center">
-    <div class="col-12">
+<div id="{{ section.anchor_id }}" class="contact-section" {{ section.locomotive_attributes }}>
+  <div class="container">
+    <div class="row justify-content-center justify-content-lg-start">
+    <div class="col-12 col-md-8 col-lg-6">
       <h2>{{ section.settings.title}}</h2>
     </div>
+  </div>
+  <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
       <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Email address</label>
+        <input type="email" class="form-control" id="inputName" placeholder="John Doe">
+        <label for="inputName">{{ 'form_input_label_name' |  translate }}</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="inputEmail" placeholder="jd@example.com">
+        <label for="inputEmail">{{ 'form_input_label_email' |  translate }}</label>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-        <label for="floatingPassword">Password</label>
+        <textarea class="form-control" placeholder="How can I help you" id="inputMessage" style="min-height: 150px"></textarea>
+        <label for="inputMessage">{{ 'form_input_label_message' |  translate }}</label>
       </div>
-      <button class="btn btn-default mt-3">
-        {{ 'form_btn_submit_label' |  translate }}
+      <button class="btn btn-default mt-3 d-block mx-auto">
+        <span>[</span> {{ 'form_btn_submit_label' |  translate }} <span>]</span>
       </button>
     </div>
     <div class="col-md-8 col-lg-6">
@@ -75,6 +82,7 @@ To use your global section, just add the following code in your layout template:
         </a>
       </div>
     </div>
+  </div>
   </div>
   
 </div>

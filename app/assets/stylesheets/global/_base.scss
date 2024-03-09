@@ -16,6 +16,27 @@ body {
     &.btn-default {
         text-transform: uppercase;
         font-size: 1.5rem;
+
+        span {
+          display: inline-block;
+          opacity: 0;
+          // transform: translateY(-5px);
+          &:nth-child(1) {
+            transform: translateX(5px);
+          }
+          &:nth-child(2) {
+            transform: translateX(-5px);
+          }
+          transition: all .2s ease-out;
+
+        }
+
+        &:hover {
+          span {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
     }
 }
 

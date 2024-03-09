@@ -3,6 +3,6 @@
 #   {{ 'hello_world' | translate }}
 #
 
-# hello_world:
-#   en: Hello world !
-#   fr: Bonjour le monde !
+form_btn_submit_label:
+  en: Connect
+  de: Connect
