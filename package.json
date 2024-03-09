@@ -12,6 +12,7 @@
   "author": "Wagon",
   "license": "ISC",
   "dependencies": {
+    "@studio-freight/lenis": "^1.0.39",
     "bootstrap": "^5.3.3",
     "gsap": "^3.12.5",
     "p5": "^1.9.1"
