@@ -11,7 +11,7 @@
     .nav-brand {
         text-decoration: none;
         font-size: 1.5rem;
-        font-weight: 900;
+        font-weight: 400;
         color: $body-color;
 
     }
@@ -28,8 +28,18 @@
 
 
     span {
-        display: none;
+        .letter {
+            display: none;
+        }
+
+        &[cursor] {
+            display: inline-block;
+            -webkit-animation: blink-1 2s infinite both;
+            animation: blink-1 2s infinite both;
+        }
     }
+
+    
 }
 
 @include media-breakpoint-up(lg) {
