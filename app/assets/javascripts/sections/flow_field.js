@@ -4,7 +4,10 @@ const Section = {
 
   load: (section) => {
     const canvas = section.querySelector('canvas')
+    let MODE = "random-noise" // "attractor-center" | "random-noise-static"
 
+    // "random-noise-static"
+    
     
     
     if (canvas) {
@@ -40,7 +43,6 @@ const Section = {
       }
 
       const sketchFunction = (sk) => {
-        console.log(scl)
         sk.setup = () => {
           sk.createCanvas(WIDTH, HEIGHT, 'WEBGL', canvasEl);
           cols = sk.floor(sk.width / scl);
@@ -49,7 +51,7 @@ const Section = {
 
           flowfield = new Array(cols * rows);
 
-          for (var i = 0; i < 500; i++) {
+          for (var i = 0; i < 200; i++) {
             particles[i] = new Particle(sk);
           }
           sk.background(25);
@@ -57,17 +59,52 @@ const Section = {
 
         sk.draw = () => {
           sk.background(25)
+          // sk.strokeWeight(50);
+          var center = sk.createVector(WIDTH / 2, HEIGHT / 2)
+          // sk.point(center);
+          if (window.FLOWFIELD_MODE) {
+            MODE = window.FLOWFIELD_MODE
+            console.log(FLOWFIELD_MODE)
+          }
           var yoff = 0;
           for (var y = 0; y < rows; y++) {
             var xoff = 0;
             for (var x = 0; x < cols; x++) {
               var index = x + y * cols;
-              var angle = sk.noise(xoff, yoff, zoff) * sk.TWO_PI * 4;
-              var v = p5.Vector.fromAngle(angle);
+              var count = rows * cols
+              var angle;
+              var v;
+              
+
+              switch (MODE) {
+                case "random-noise":
+                  angle = sk.noise(xoff, yoff, zoff) * sk.TWO_PI * 4;
+                  v = p5.Vector.fromAngle(angle);
+                  break;
+                case "attractor-center":
+                  v = sk.createVector(x * scl, y * scl).sub(center).mult(-1);
+                  if(v.mag() < 150) {
+                    v = v.mult(0)
+                  }
+                  break;
+                case "random-noise-static":
+                  angle = sk.noise(xoff, yoff, zoff) * sk.TWO_PI * 4;
+                  if (!flowfield[index]) {
+                    v = p5.Vector.fromAngle(angle);
+                  }
+                  v = flowfield[index]
+                  break;
+              
+                default:
+                  angle = sk.noise(sk.random(cols * inc), sk.random(rows * inc), sk.random(0.0003 * cols)) * sk.TWO_PI * 4;
+                  v = p5.Vector.fromAngle(angle);
+                  break;
+              }
+
               v.setMag(1);
               flowfield[index] = v;
               xoff += inc;
-              sk.stroke(0, 50);
+              // sk.stroke(255, 50);
               // sk.push();
               // sk.translate(x * scl, y * scl);
               // sk.rotate(v.heading());

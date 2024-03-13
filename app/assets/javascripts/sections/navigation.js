@@ -31,10 +31,13 @@ const Section = {
 
     brand.addEventListener('mouseenter', () => {
       tl.play()
+      window.FLOWFIELD_MODE = "attractor-center"
     })
     brand.addEventListener('mouseleave', () => {
       tl.reversed(true)
+      window.FLOWFIELD_MODE = "random-noise"
     })
+
 
 },
 
