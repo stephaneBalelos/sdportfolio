@@ -5,14 +5,14 @@ const Section = {
   load: (section) => {
     const canvas = section.querySelector('canvas')
     let MODE = "random-noise" // "attractor-center" | "random-noise-static"
-    let PARTICLES_COUNT = 50
+    let PARTICLES_COUNT = 100
     
     
     
     if (canvas) {
       
       var inc = 0.1;
-      var scl = 30;
+      var scl = 50;
       var cols, rows;
 
       var zoff = 0;

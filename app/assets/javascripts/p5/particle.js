@@ -67,6 +67,11 @@ class Particle {
                     sk.line(this.line[i-1].x, this.line[i-1].y, curveGroup[0].x, curveGroup[0].y)
                 }
 
+                // if(!this.line[i].skip || !this.line[0].skip) {
+                //     sk.line(sk.width / 2, sk.height / 2, this.line[i].x, this.line[i].y)
+                // }
+
+
             }
         }
         sk.endShape();
@@ -109,10 +114,6 @@ class Particle {
         this.line.push({ x: this.pos.x, y: this.pos.y, skip: skip })
         if (this.line.length > 196) {
             this.line.shift()
-        }
-
-        if (skip) {
-            console.log(this.line)
         }
     }
 }
