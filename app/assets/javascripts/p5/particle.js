@@ -107,7 +107,7 @@ class Particle {
     updateLine(pos, skip = false) {
         this.lifeSpan -= 1
         this.line.push({ x: this.pos.x, y: this.pos.y, skip: skip })
-        if (this.line.length > 48) {
+        if (this.line.length > 196) {
             this.line.shift()
         }
 
