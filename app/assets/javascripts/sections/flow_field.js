@@ -5,15 +5,14 @@ const Section = {
   load: (section) => {
     const canvas = section.querySelector('canvas')
     let MODE = "random-noise" // "attractor-center" | "random-noise-static"
-
-    // "random-noise-static"
+    let PARTICLES_COUNT = 10
     
     
     
     if (canvas) {
       
       var inc = 0.1;
-      var scl = 10;
+      var scl = 30;
       var cols, rows;
 
       var zoff = 0;
@@ -51,11 +50,12 @@ const Section = {
 
           flowfield = new Array(cols * rows);
 
-          for (var i = 0; i < 200; i++) {
+          for (var i = 0; i < PARTICLES_COUNT; i++) {
             particles[i] = new Particle(sk);
           }
           sk.background(25);
-        }
+
+      }
 
         sk.draw = () => {
           sk.background(25)
@@ -64,7 +64,6 @@ const Section = {
           // sk.point(center);
           if (window.FLOWFIELD_MODE) {
             MODE = window.FLOWFIELD_MODE
-            console.log(FLOWFIELD_MODE)
           }
           var yoff = 0;
           for (var y = 0; y < rows; y++) {
@@ -91,8 +90,9 @@ const Section = {
                   angle = sk.noise(xoff, yoff, zoff) * sk.TWO_PI * 4;
                   if (!flowfield[index]) {
                     v = p5.Vector.fromAngle(angle);
+                  } else{
+                    v = flowfield[index]
                   }
-                  v = flowfield[index]
                   break;
               
                 default:
@@ -121,8 +121,14 @@ const Section = {
             particles[i].follow(sk, cols, scl, flowfield);
             particles[i].update();
             particles[i].edges(sk.width, sk.height);
+
             particles[i].show(sk);
           }
+
+          // if (sk.frameCount % 100 == 0) {
+          //   particles.shift();
+          //   particles.push(new Particle(sk));
+          // }
 
           fr.html(sk.floor(sk.frameRate()));
         }
