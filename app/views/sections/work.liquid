@@ -77,18 +77,20 @@ presets:
 ---
 <section id="{{ section.anchor_id }}" class="work-section py-5" {{ section.locomotive_attributes }}>
   <div class="container">
-    <h2 class="section-title">{{ section.settings.title }}</h2>
+    <h2 class="section-title text-white">{{ section.settings.title }}</h2>
     {% if section.settings.text_content %}
     <p>
         {{ section.settings.text_content }}
     </p>
     {% endif %}
-    <div class="work-list row">
+    <div class="work-list row my-5">
       {% for block in section.blocks %}
         <div class="col-12">
-          <div class="work-item">
-            <h4 class="work-item-title">{{ block.settings.title }}</h4>
-            <p class="work-item-details">{{ block.settings.details }}</p>
+          <div class="work-item mb-3 d-flex align-items-start">
+            <div class="work-item-content">
+              <h4 class="work-item-title text-white"> <span>#</span> {{ block.settings.title }}</h4>
+              <p class="work-item-details">{{ block.settings.details }}</p>
+            </div>
           </div>
         </div>
       {% endfor %}

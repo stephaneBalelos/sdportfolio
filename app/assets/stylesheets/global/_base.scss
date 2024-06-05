@@ -1,5 +1,7 @@
 body {
-    position: relative;    
+    position: relative; 
+    --body-color: #{$body-color};
+    --body-bg: #{$body-bg};
 }
 
 .btn {

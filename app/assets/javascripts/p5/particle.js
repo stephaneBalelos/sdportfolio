@@ -1,12 +1,17 @@
+import utils from "../utils";
+
 class Particle {
     constructor(sk) {
+        this.sk = sk
         this.pos = sk.createVector(sk.random(sk.width), sk.random(sk.height));
         this.vel = sk.createVector(0, 0);
         this.acc = sk.createVector(0, 0);
         this.maxspeed = 4;
         this.prevPos = this.pos.copy();
         this.line = []
-        this.line.push({ x: this.pos.x, y: this.pos.y })
+        this.lineMaxLength = 196
+        this.showLine = true
+
     }
 
     update() {
@@ -30,51 +35,59 @@ class Particle {
     }
 
     show(sk) {
-        const curveGroups = []
-        // sk.point(this.line[this.line.length -1].x, this.line[this.line.length -1].y);
 
-        sk.beginShape();
-        for (let i = 0; i < this.line.length - 3; i++) {
-            if (i % 4 === 0) {
-                const curveGroup = this.line.slice(i, i + 4);
-                if (curveGroup.map((point) => point.skip).includes(true)) {
-                    continue;
+        const bodyColor = utils.hexToRgb(window.BODY_COLOR)
+        
+        if (this.showLine) {
+            const curveGroups = []
+            sk.beginShape();
+            for (let i = 0; i < this.line.length - 3; i++) {
+                if (i % 4 === 0) {
+                    const curveGroup = this.line.slice(i, i + 4);
+                    if (curveGroup.map((point) => point.skip).includes(true)) {
+                        continue;
+                    }
+                    sk.stroke(`rgba(${bodyColor.r}, ${bodyColor.g}, ${bodyColor.b}, 0.1)`);
+                    sk.strokeWeight(1);
+                    // sk.stroke(0, 255, 0);
+                    sk.curve(
+                        curveGroup[0].x, curveGroup[0].y,
+                        curveGroup[1].x, curveGroup[1].y,
+                        curveGroup[2].x, curveGroup[2].y,
+                        curveGroup[3].x, curveGroup[3].y
+                    );
+                    sk.curve(
+                        curveGroup[0].x, curveGroup[0].y,
+                        curveGroup[0].x, curveGroup[0].y,
+                        curveGroup[1].x, curveGroup[1].y,
+                        curveGroup[2].x, curveGroup[2].y,
+                    );
+    
+                    sk.curve(
+                        curveGroup[1].x, curveGroup[1].y,
+                        curveGroup[2].x, curveGroup[2].y,
+                        curveGroup[3].x, curveGroup[3].y,
+                        curveGroup[3].x, curveGroup[3].y
+                    );
+    
+                    if (this.line[i-1]) {
+                        sk.line(this.line[i-1].x, this.line[i-1].y, curveGroup[0].x, curveGroup[0].y)
+                    }
+    
+                    // if(!this.line[i].skip || !this.line[0].skip) {
+                    //     sk.line(sk.width / 2, sk.height / 2, this.line[i].x, this.line[i].y)
+                    // }
+    
+    
                 }
-                sk.stroke(255, 0, 0);
-                sk.strokeWeight(1);
-                // sk.stroke(0, 255, 0);
-                sk.curve(
-                    curveGroup[0].x, curveGroup[0].y,
-                    curveGroup[1].x, curveGroup[1].y,
-                    curveGroup[2].x, curveGroup[2].y,
-                    curveGroup[3].x, curveGroup[3].y
-                );
-                sk.curve(
-                    curveGroup[0].x, curveGroup[0].y,
-                    curveGroup[0].x, curveGroup[0].y,
-                    curveGroup[1].x, curveGroup[1].y,
-                    curveGroup[2].x, curveGroup[2].y,
-                );
-
-                sk.curve(
-                    curveGroup[1].x, curveGroup[1].y,
-                    curveGroup[2].x, curveGroup[2].y,
-                    curveGroup[3].x, curveGroup[3].y,
-                    curveGroup[3].x, curveGroup[3].y
-                );
-
-                if (this.line[i-1]) {
-                    sk.line(this.line[i-1].x, this.line[i-1].y, curveGroup[0].x, curveGroup[0].y)
-                }
-
-                // if(!this.line[i].skip || !this.line[0].skip) {
-                //     sk.line(sk.width / 2, sk.height / 2, this.line[i].x, this.line[i].y)
-                // }
-
-
             }
+            sk.endShape();
+            
+        } else {
+            sk.stroke(`rgba(${bodyColor.r}, ${bodyColor.g}, ${bodyColor.b}, 0.5)`);
+            sk.strokeWeight(1);
+            sk.line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
         }
-        sk.endShape();
 
         this.updatePrev();
     }
@@ -112,7 +125,7 @@ class Particle {
     updateLine(pos, skip = false) {
         this.lifeSpan -= 1
         this.line.push({ x: this.pos.x, y: this.pos.y, skip: skip })
-        if (this.line.length > 196) {
+        if (this.line.length > this.lineMaxLength) {
             this.line.shift()
         }
     }

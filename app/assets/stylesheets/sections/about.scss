@@ -6,12 +6,12 @@
 
         text-decoration: none;
         line-height: 1;
-        color: #939393;
+        color: $body-color;
         display: inline-block;
 
         .letter {
             color: transparent;
-            background: linear-gradient(to right, #ffffff, #ffffff 50%, #858585 50%);
+            background: linear-gradient(to right, $body-color, $body-color 50%, rgba($body-color, .5) 50%);
             background-clip: text;
             background-size: 200% 100%;
             background-position: 100% 0%;

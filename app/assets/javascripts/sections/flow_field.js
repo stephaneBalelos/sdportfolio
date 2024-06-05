@@ -1,18 +1,25 @@
 import p5 from "p5";
 import Particle from "../p5/particle";
+import utils from "../utils";
 const Section = {
 
   load: (section) => {
     const canvas = section.querySelector('canvas')
     let MODE = "random-noise" // "attractor-center" | "random-noise-static"
     let PARTICLES_COUNT = 100
-    
+
+    window.BODY_COLOR = getComputedStyle(document.body).getPropertyValue('--body-color')
+    window.BG_COLOR = getComputedStyle(document.body).getPropertyValue('--body-bg')
+
+    window.ParticlesGrowLimit = 196
+    window.ParticleLifespan = 200
+  
     
     
     if (canvas) {
       
       var inc = 0.1;
-      var scl = 50;
+      var scl = 10;
       var cols, rows;
 
       var zoff = 0;
@@ -28,10 +35,6 @@ const Section = {
       var WIDTH;
       var HEIGHT;
       
-
-      canvas.addEventListener('click', () => {
-        scl = scl == 10 ? 150 : 10
-      })
 
       const getSketchFunction = (el) => {
         canvasEl = el
@@ -53,12 +56,12 @@ const Section = {
           for (var i = 0; i < PARTICLES_COUNT; i++) {
             particles[i] = new Particle(sk);
           }
-          sk.background(25);
+          sk.background(window.BG_COLOR);
 
       }
 
         sk.draw = () => {
-          sk.background(25)
+          sk.background(window.BG_COLOR);
           // sk.strokeWeight(50);
           var center = sk.createVector(WIDTH / 2, HEIGHT / 2)
           // sk.point(center);
@@ -70,11 +73,9 @@ const Section = {
             var xoff = 0;
             for (var x = 0; x < cols; x++) {
               var index = x + y * cols;
-              var count = rows * cols
               var angle;
               var v;
               
-
               switch (MODE) {
                 case "random-noise":
                   angle = sk.noise(xoff, yoff, zoff) * sk.TWO_PI * 4;
@@ -114,7 +115,7 @@ const Section = {
             }
             yoff += inc;
 
-            zoff += 0.0003;
+            zoff += 0.00003;
           }
 
           for (var i = 0; i < particles.length; i++) {

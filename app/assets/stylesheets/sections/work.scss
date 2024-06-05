@@ -1,3 +1,28 @@
 .work-section {
+    .work-list {
+        .work-item {
+            .work-item-content {
+                .work-item-title {
+                    span {
+                        display: inline-block;
+                        opacity: 0;
+                        transform-origin: left center;
+                        max-width: 0px;
+                        transition: all .2s ease-in-out;
+                    }
+                }
+            }
 
+            &:hover {
+                .work-item-content {
+                    .work-item-title {
+                        span {
+                            opacity: 1;
+                            max-width: 100px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
