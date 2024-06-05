@@ -5,6 +5,16 @@
     h2 {
         font-size: 3rem;
         color: $white;
+
+        &.contact-title {
+            .letter {
+                color: transparent;
+                background: linear-gradient(to right, $body-color, $body-color 50%, rgba($body-color, .5) 50%);
+                background-clip: text;
+                background-size: 200% 100%;
+                background-position: 100% 0%;
+            }
+        }
     }
 
     .links {
