@@ -17,9 +17,9 @@ const Section = {
     window.PARTICLE_MAX_SPEED = 4
 
 
-    window.FLOWFIELD_MODE = "random-noise"
-    window.FLOWFIELD_SCALE = 10
-    window.SHOW_FIELD_VECTORS = false
+    window.FLOWFIELD_MODE = "vortex" // "random-noise" | "attractor" | "vortex" | "random-noise-static
+    window.FLOWFIELD_SCALE = 40
+    window.SHOW_FIELD_VECTORS = true
 
     // Mode Params Random Noise
     window.RANDOM_NOISE_INCREMENT = 0.1
@@ -27,6 +27,10 @@ const Section = {
 
     // Mode Params Attractor
     window.ATTRACTOR_CENTER = "center" // "mouse-follow" | "center" | "mouse-click"
+
+    // Mode Params Vortex
+    window.VORTEX_CENTER = "mouse-click" // "mouse-follow" | "center" | "mouse-click"
+    window.VORTEX_ANGLE = 0.01
   
     
     
@@ -71,7 +75,7 @@ const Section = {
           lastClickPosition = sk.createVector(WIDTH / 2, HEIGHT / 2)
 
           document.body.addEventListener('click', (e) => {
-            if (window.ATTRACTOR_CENTER === "mouse-click") {
+            if (window.ATTRACTOR_CENTER === "mouse-click" || window.VORTEX_CENTER === "mouse-click") {
               lastClickPosition = sk.createVector(e.clientX, e.clientY)
             }
           })
@@ -128,13 +132,31 @@ const Section = {
                   }
                   break;
                 case "vortex":
-                  const mouse = sk.createVector(sk.mouseX, sk.mouseY)
-                  v = sk.createVector(x * scl, y * scl).sub(mouse).mult(-1);
+                  let vortexCenter
+                  switch (window.VORTEX_CENTER) {
+                    case "center":
+                      vortexCenter = center
+                      break;
+                    case "mouse-follow":
+                      vortexCenter = sk.createVector(sk.mouseX, sk.mouseY)
+                      break;
+                    case "mouse-click":
+                      vortexCenter = lastClickPosition
+                      break;
+                    default:
+                      vortexCenter = center
+                  }
+                  
+                  v = sk.createVector(x * scl, y * scl).sub(vortexCenter).mult(-1);
+                  
+                  v = sk.createVector(x * scl, y * scl).sub(vortexCenter).mult(-1);
                   const xc = sk.lerp(sk.mouseX, sk.width, 0)
                   const yc = sk.lerp(sk.mouseY, sk.height, 0)
 
-                  const a = sk.atan2(sk.width, sk.height)
+                  const a = window.VORTEX_ANGLE ? window.VORTEX_ANGLE : 45
+                  sk.angleMode(sk.DEGREES)
                   v = v.rotate(a)
+                  sk.angleMode(sk.RADIANS)
                   
                   break;
                 case "random-noise-static":
