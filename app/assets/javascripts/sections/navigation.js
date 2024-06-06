@@ -31,7 +31,7 @@ const Section = {
 
     brand.addEventListener('mouseenter', () => {
       tl.play()
-      window.FLOWFIELD_MODE = "attractor-center"
+      window.FLOWFIELD_MODE = "vortex"
     })
     brand.addEventListener('mouseleave', () => {
       tl.reversed(true)

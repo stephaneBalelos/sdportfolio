@@ -2,6 +2,10 @@ body {
     position: relative; 
     --body-color: #{$body-color};
     --body-bg: #{$body-bg};
+
+    main {
+      transition: all .3s ease-in-out;
+    }
 }
 
 .btn {

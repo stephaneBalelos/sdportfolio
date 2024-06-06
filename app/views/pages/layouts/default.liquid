@@ -19,8 +19,12 @@ is_layout: false
       <script src="http://localhost:35729/livereload.js"></script>
     {% endif %}
   </head>
-  <body>
-    {% block 'main' %}
-    {% endblock %}
+  <body class="flow-field-controller-open">
+    <main>
+      {% block 'main' %}
+      {% endblock %}
+    </main>
+    {% global_section 'flow_field' %}
+    {% include 'flow_field_playground' %}
   </body>
 </html>

@@ -1,0 +1,84 @@
+.flow-field-playground {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 400px;
+    padding: .5rem;
+    background-color: $body-bg;
+
+    #flow-field-controller-toggler {
+        margin-left: auto;
+        display: block;
+    }
+
+    .control-panel {
+        max-height: 0px;
+        overflow: hidden;
+        transition: all .3s ease-in-out;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .flow-field-playground {
+        max-width: 80%;
+    }
+}
+@include media-breakpoint-up(lg) {
+    .flow-field-playground {
+        max-width: 600px;
+    }
+}
+
+
+body {
+    &.flow-field-controller-open {
+        main {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .flow-field-playground {
+            .control-panel {
+                max-height: 400px;
+                overflow: auto;
+
+                .control-panel-block {
+
+                }
+
+                .panel-mode-selected {
+                    .panel-mode {
+                        max-height: 0px;
+                        overflow: hidden;
+                        transition: all .3s ease-in-out;
+                        margin-left: .5rem;
+                        font-size: .8rem;
+
+                        label {
+                            margin: 0;
+                        }
+                    }
+
+                    &.mode-random-noise {
+                        [random-noise] {
+                            max-height: 500px;
+                        }
+                    }
+                    &.mode-attractor {
+                        [attractor] {
+                            max-height: 500px;
+                        }
+                    }
+                    &.mode-vortex {
+                        [vortex] {
+                            max-height: 500px;
+                        }
+                    }
+                }
+
+                
+            }
+        }
+    }
+}

@@ -6,10 +6,10 @@ class Particle {
         this.pos = sk.createVector(sk.random(sk.width), sk.random(sk.height));
         this.vel = sk.createVector(0, 0);
         this.acc = sk.createVector(0, 0);
-        this.maxspeed = 4;
+        this.maxspeed = window.PARTICLE_MAX_SPEED;
         this.prevPos = this.pos.copy();
         this.line = []
-        this.lineMaxLength = 196
+        this.lineMaxLength = 98
         this.showLine = true
 
     }
@@ -20,6 +20,7 @@ class Particle {
         this.pos.add(this.vel);
         this.updateLine(this.pos)
         this.acc.mult(0);
+        this.maxspeed = window.PARTICLE_MAX_SPEED
     }
 
     follow(sk, cols, scl, vectors) {
