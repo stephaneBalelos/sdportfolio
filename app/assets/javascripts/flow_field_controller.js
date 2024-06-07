@@ -4,6 +4,10 @@ const initController = () => {
         return
     }
 
+    controllerEl.addEventListener('click', (e) => {
+        e.stopPropagation()
+    })
+
     const openButton = controllerEl.querySelector('#flow-field-controller-toggler')
 
     
@@ -32,23 +36,6 @@ const initController = () => {
     const modePanelContainer = controllerEl.querySelector('.panel-mode-selected')
     const modePanel = modePanelContainer.querySelector('.panel-mode')
 
-    function onModeChange() {
-        window.FLOWFIELD_MODE = this.value
-        if (modePanelContainer.classList.contains('mode-random-noise')) {
-            modePanelContainer.classList.remove('mode-random-noise')
-        }
-        if (modePanelContainer.classList.contains('mode-attractor')) {
-            modePanelContainer.classList.remove('mode-attractor')
-        }
-        if (modePanelContainer.classList.contains('mode-vortex')) {
-            modePanelContainer.classList.remove('mode-vortex')
-        }
-        modePanelContainer.classList.add(`mode-${this.value}`)
-    }
-
-    [...modeSelect].forEach(radio => {
-        radio.addEventListener('change', onModeChange)
-    })
 
     const controllerInputs = controllerEl.querySelectorAll('input[type=range], input[type=number], input[type=checkbox], input[type=radio]')
 
@@ -74,9 +61,11 @@ const initController = () => {
 
         if (this.type === 'radio') {
             value = this.value
+
+            if(this.name === "FLOWFIELD_MODE") {
+                handleModeChange(value)
+            }
         }
-        
-        console.log(this.name, value)
         window[this.name] = value
     }
 
@@ -84,9 +73,52 @@ const initController = () => {
         input.addEventListener('input', onPropertyChange)
     })
 
+    // init Input values
+    controllerInputs.forEach(input => {
+        const name = input.name
+        let value = window[name]
+        if (input.type === 'range') {
+            const valueEl = controllerEl.querySelector(`[data-value-for=${name}]`)
+            if (input.dataset.rangeMult) {
+                const roundValue = input.dataset.rangeMult ? input.dataset.rangeMult.length : 0
+                valueEl.innerHTML = value.toFixed(roundValue)
+                value = value / parseFloat(input.dataset.rangeMult)
+                input.value = value
+            } else {
+                valueEl.innerHTML = value
+            }
+            input.value = value
+        }
+        if (input.type === 'checkbox') {
+            input.checked = value
+        } 
+        if (input.type === 'radio') {
+            if (input.value === value) {
+                input.checked = true
+            } else {
+                input.checked = false
+            }
+
+            if(name === "FLOWFIELD_MODE") {
+                handleModeChange(value)
+            }
+        }
+    })
 
 
 
+    function handleModeChange (value) {
+        if (modePanelContainer.classList.contains('mode-random-noise')) {
+            modePanelContainer.classList.remove('mode-random-noise')
+        }
+        if (modePanelContainer.classList.contains('mode-attractor')) {
+            modePanelContainer.classList.remove('mode-attractor')
+        }
+        if (modePanelContainer.classList.contains('mode-vortex')) {
+            modePanelContainer.classList.remove('mode-vortex')
+        }
+        modePanelContainer.classList.add(`mode-${value}`)
+    }
 
 
 };

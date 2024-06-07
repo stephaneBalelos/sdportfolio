@@ -17,13 +17,13 @@ const Section = {
     window.PARTICLE_MAX_SPEED = 4
 
 
-    window.FLOWFIELD_MODE = "random-noise" // "random-noise" | "attractor" | "vortex" | "random-noise-static
-    window.FLOWFIELD_SCALE = 10
-    window.SHOW_FIELD_VECTORS = false
-    window.PARTICLES_COUNT = 100
+    window.FLOWFIELD_MODE = "attractor" // "random-noise" | "attractor" | "vortex" | "random-noise-static
+    window.FLOWFIELD_SCALE = 40
+    window.SHOW_FIELD_VECTORS = true
+    window.PARTICLES_COUNT = 50
 
     // Mode Params Random Noise
-    window.RANDOM_NOISE_INCREMENT = 0.1
+    window.RANDOM_NOISE_INCREMENT = 0.2
     window.RANDOM_NOISE_ZOFF_INCREMENT = 0.00003
 
     // Mode Params Attractor
