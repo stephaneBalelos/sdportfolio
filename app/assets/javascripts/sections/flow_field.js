@@ -17,9 +17,10 @@ const Section = {
     window.PARTICLE_MAX_SPEED = 4
 
 
-    window.FLOWFIELD_MODE = "vortex" // "random-noise" | "attractor" | "vortex" | "random-noise-static
-    window.FLOWFIELD_SCALE = 40
-    window.SHOW_FIELD_VECTORS = true
+    window.FLOWFIELD_MODE = "random-noise" // "random-noise" | "attractor" | "vortex" | "random-noise-static
+    window.FLOWFIELD_SCALE = 10
+    window.SHOW_FIELD_VECTORS = false
+    window.PARTICLES_COUNT = 100
 
     // Mode Params Random Noise
     window.RANDOM_NOISE_INCREMENT = 0.1
@@ -29,8 +30,8 @@ const Section = {
     window.ATTRACTOR_CENTER = "center" // "mouse-follow" | "center" | "mouse-click"
 
     // Mode Params Vortex
-    window.VORTEX_CENTER = "mouse-click" // "mouse-follow" | "center" | "mouse-click"
-    window.VORTEX_ANGLE = 0.01
+    window.VORTEX_CENTER = "center" // "mouse-follow" | "center" | "mouse-click"
+    window.VORTEX_ANGLE = 45
   
     
     
@@ -85,6 +86,15 @@ const Section = {
 
           // Handle Scale Changes
           scl = window.FLOWFIELD_SCALE ? window.FLOWFIELD_SCALE : 10;
+          PARTICLES_COUNT = window.PARTICLES_COUNT ? window.PARTICLES_COUNT : 100
+          // Handle Particles Count Changes
+          if (particles.length < PARTICLES_COUNT) {
+            for (var i = 0; i < PARTICLES_COUNT - particles.length; i++) {
+              particles.push(new Particle(sk));
+            }
+          } else if (particles.length > PARTICLES_COUNT) {
+            particles = particles.slice(0, PARTICLES_COUNT)
+          }
           cols = sk.floor(sk.width / scl);
           rows = sk.floor(sk.height / scl);
           flowfield = new Array(cols * rows);
@@ -180,12 +190,15 @@ const Section = {
               
               if (window.SHOW_FIELD_VECTORS) {
                 const offset = scl / 2;
-                sk.stroke(255, 50);
+                const bodyColor = utils.hexToRgb(window.BODY_COLOR)
+                sk.stroke(`rgba(${bodyColor.r}, ${bodyColor.g}, ${bodyColor.b}, 0.3)`);
                 sk.strokeWeight(1);
                 sk.push();
                 sk.translate(x * scl + offset, y * scl + offset);
                 sk.rotate(v.heading());
                 sk.line(0, 0, scl, 0);
+                sk.fill(`rgba(${bodyColor.r}, ${bodyColor.g}, ${bodyColor.b}, 0.3)`);
+                sk.triangle(scl, 0, scl - scl/8, scl /8, scl - scl/8, scl / -8)
                 sk.pop();
               } 
             }
@@ -203,6 +216,7 @@ const Section = {
               particles[i].show(sk);
             }
           }
+
 
           // if (sk.frameCount % 100 == 0) {
           //   particles.shift();
