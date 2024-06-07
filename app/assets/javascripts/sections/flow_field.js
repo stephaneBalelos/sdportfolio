@@ -137,7 +137,7 @@ const Section = {
                       attractorCenter = center
                   }
                   v = sk.createVector(x * scl, y * scl).sub(attractorCenter).mult(-1);
-                  if(v.mag() < 150) {
+                  if(v.mag() < 200) {
                     v = v.mult(0)
                   }
                   break;
@@ -196,9 +196,13 @@ const Section = {
                 sk.push();
                 sk.translate(x * scl + offset, y * scl + offset);
                 sk.rotate(v.heading());
-                sk.line(0, 0, scl, 0);
+                sk.line(0, 0, scl * v.mag(), 0);
                 sk.fill(`rgba(${bodyColor.r}, ${bodyColor.g}, ${bodyColor.b}, 0.3)`);
-                sk.triangle(scl, 0, scl - scl/8, scl /8, scl - scl/8, scl / -8)
+                if(v.mag() > 0) {
+                  sk.triangle(scl, 0, scl - scl/8, scl /8, scl - scl/8, scl / -8)
+                } else {
+                  sk.point(0, 0)
+                }
                 sk.pop();
               } 
             }
