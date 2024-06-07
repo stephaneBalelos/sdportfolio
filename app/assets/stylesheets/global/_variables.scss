@@ -4,9 +4,10 @@ $border-radius: 0;
 $spacer: 1.5rem;
 
 // Colors
+$body-color: #cade9c;
+$primary: $body-color;
 $danger: #DC0A2E;
 $gray: #EBF0F5;
-$body-color: #cade9c;
 
 // Container
 $container-max-widths: (
@@ -40,3 +41,22 @@ $input-focus-color:                     $body-bg;
 $input-focus-box-shadow:                none;
 
 $form-floating-input-padding-t:   1.8rem;
+
+
+// Range Sliders
+$form-range-track-height:         .1rem;
+$form-range-track-cursor:         pointer;
+$form-range-track-bg:             rgba($body-color, .5);
+$form-range-track-border-radius:  0;
+$form-range-track-box-shadow:     none;
+
+$form-range-thumb-width:                   1rem;
+$form-range-thumb-height:                  $form-range-thumb-width;
+$form-range-thumb-border:                  0;
+$form-range-thumb-border-radius:           1rem;
+$form-range-thumb-box-shadow:              none;
+// $form-range-thumb-focus-box-shadow:        0 0 0 1px $body-bg, $input-focus-box-shadow;
+// $form-range-thumb-focus-box-shadow-width:  $input-focus-width; // For focus box shadow issue in Edge
+// $form-range-thumb-active-bg:               tint-color($component-active-bg, 70%);
+// $form-range-thumb-disabled-bg:             $gray-500;
+$form-range-thumb-transition:              background-color .15s ease-in-out, border-color

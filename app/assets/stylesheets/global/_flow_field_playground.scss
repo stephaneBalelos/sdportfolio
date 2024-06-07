@@ -39,6 +39,12 @@ body {
             pointer-events: none;
         }
         .flow-field-playground {
+            opacity: 0.1;
+            transition: all .3s ease-in-out;
+
+            &:hover {
+                opacity: 1;
+            }
             .control-panel {
                 max-height: 400px;
                 overflow: auto;
