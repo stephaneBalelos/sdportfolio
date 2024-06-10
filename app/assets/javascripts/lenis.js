@@ -26,6 +26,9 @@ const initLenis = () => {
     }
 
     requestAnimationFrame(raf)
+
+    // make lenis available globally
+    window.lenis = lenis
 }
 
 window.addEventListener('load', () => {

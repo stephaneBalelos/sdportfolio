@@ -26,10 +26,16 @@ const initController = () => {
     const openController = () => {
         document.body.classList.add('flow-field-controller-open')
         openButton.innerHTML = openButton.dataset.closeText
+        if(window.lenis) {
+            window.lenis.stop()
+        }
     }
     const closeController = () => {
         document.body.classList.remove('flow-field-controller-open')
         openButton.innerHTML = openButton.dataset.openText
+        if(window.lenis) {
+            window.lenis.start()
+        }
     }
 
     const modeSelect = controllerEl.querySelectorAll('input[type=radio][name=modeSelect]')
