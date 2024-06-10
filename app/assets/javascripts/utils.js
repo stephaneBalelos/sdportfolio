@@ -6,7 +6,9 @@ const utils = {
           g: parseInt(result[2], 16),
           b: parseInt(result[3], 16)
         } : null;
-      }
+      },
+    lettersAndSymbols: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '!', '@', '#', '$', '%', '^', '&', '*', '-', '_', '+', '=', ';', ':', '<', '>', ',']
+
 }
 
 export default utils;

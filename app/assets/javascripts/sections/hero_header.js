@@ -1,4 +1,5 @@
 import gsap from "gsap";
+import utils from "../utils";
 
 const letters = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
 
@@ -10,35 +11,36 @@ const Section = {
 
     const headerTitle = document.querySelector('[hero-header]')
     if (headerTitle) {
-      // headerTitle.innerHTML = headerTitle.textContent.replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>");
+
+      headerTitle.innerHTML = headerTitle.textContent.replace(/([^\x00-\x80]|\w)/g, "<span class='letter' data-initial='$&'>$&</span>");
       const tl = gsap.timeline({})
-      // tl.to(headerTitle.querySelectorAll('.letter'), {
-      //   opacity: 1, ease: "expo.out",
-      //   duration: .6,
-      //   stagger: .034
-      // })
-      let iteration = 0;
-  
-      clearInterval(interval);
-      
-      interval = setInterval(() => {
-        headerTitle.innerText = headerTitle.innerText
-          .split("")
-          .map((letter, index) => {
-            if(index < iteration) {
-              return headerTitle.dataset.value[index];
-            }
-          
-            return letters[Math.floor(Math.random() * 52)]
+      const chars = [...headerTitle.querySelectorAll('.letter')];
+      shuffleChars(chars);
+    }
+
+    function shuffleChars(arr) {
+      arr.forEach((char, position) => {
+        let iterations = 0;
+          gsap.killTweensOf(char);
+          gsap.fromTo(char, {
+              opacity: 1
+          }, {
+              duration: 0.03,
+              innerHTML: () => {
+                // iterations++;
+                if(position < iterations) {
+                  return char.dataset.initial;
+                } else {
+                  return utils.lettersAndSymbols[Math.floor(Math.random() * utils.lettersAndSymbols.length)];
+                }
+              },
+              repeat: arr.length,
+              repeatRefresh: true,
+              opacity: 1,
+              onRepeat: () => iterations++,
+              onComplete: () => gsap.set(char, {innerHTML: char.dataset.initial, delay: 0.03}),
           })
-          .join("");
-        
-        if(iteration >= headerTitle.dataset.value.length){ 
-          clearInterval(interval);
-        }
-        
-        iteration += 1 ;
-      }, 30);
+      });
     }
   },
 
