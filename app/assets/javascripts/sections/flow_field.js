@@ -17,6 +17,18 @@ const Section = {
     window.PARTICLE_MAX_SPEED = 4
 
 
+    const frameRateEls = Array.from(document.querySelectorAll("[fr-viewer]"))
+    window.FRAME_RATE = new Proxy({fr: 0}, {
+      set: function(obj, prop, value) {
+        obj[prop] = value;
+        for (var i = 0; i < frameRateEls.length; i++) {
+          frameRateEls[i].innerHTML = value
+        }
+        return true;
+      }
+    })
+
+
     window.FLOWFIELD_MODE = "vortex" // "random-noise" | "attractor" | "vortex" | "random-noise-static
     window.FLOWFIELD_SCALE = 10
     window.SHOW_FIELD_VECTORS = false
@@ -34,6 +46,7 @@ const Section = {
     window.VORTEX_CENTER = "center" // "mouse-follow" | "center" | "mouse-click"
     window.VORTEX_ANGLE = 45
     window.VORTEX_RADIUS = 0
+    
   
     
     
@@ -233,6 +246,7 @@ const Section = {
           // }
 
           // fr.html(sk.floor(sk.frameRate()));
+          window.FRAME_RATE.fr = sk.floor(sk.frameRate());
         }
       }
 
