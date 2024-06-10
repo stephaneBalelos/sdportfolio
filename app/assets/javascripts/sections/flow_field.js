@@ -17,9 +17,9 @@ const Section = {
     window.PARTICLE_MAX_SPEED = 4
 
 
-    window.FLOWFIELD_MODE = "attractor" // "random-noise" | "attractor" | "vortex" | "random-noise-static
-    window.FLOWFIELD_SCALE = 40
-    window.SHOW_FIELD_VECTORS = true
+    window.FLOWFIELD_MODE = "vortex" // "random-noise" | "attractor" | "vortex" | "random-noise-static
+    window.FLOWFIELD_SCALE = 10
+    window.SHOW_FIELD_VECTORS = false
     window.PARTICLES_COUNT = 50
 
     // Mode Params Random Noise
@@ -28,10 +28,12 @@ const Section = {
 
     // Mode Params Attractor
     window.ATTRACTOR_CENTER = "center" // "mouse-follow" | "center" | "mouse-click"
+    window.ATTRACTOR_RADIUS = 150
 
     // Mode Params Vortex
     window.VORTEX_CENTER = "center" // "mouse-follow" | "center" | "mouse-click"
     window.VORTEX_ANGLE = 45
+    window.VORTEX_RADIUS = 0
   
     
     
@@ -137,7 +139,7 @@ const Section = {
                       attractorCenter = center
                   }
                   v = sk.createVector(x * scl, y * scl).sub(attractorCenter).mult(-1);
-                  if(v.mag() < 200) {
+                  if(v.mag() < window.ATTRACTOR_RADIUS) {
                     v = v.mult(0)
                   }
                   break;
@@ -168,6 +170,9 @@ const Section = {
                   v = v.rotate(a)
                   sk.angleMode(sk.RADIANS)
                   
+                  if(v.mag() < window.VORTEX_RADIUS) {
+                    v = v.mult(0)
+                  }
                   break;
                 case "random-noise-static":
                   angle = sk.noise(xoff, yoff, zoff) * sk.TWO_PI * 4;
