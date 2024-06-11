@@ -52,7 +52,7 @@ const Section = {
     
     if (canvas) {
       
-      var inc = window.RANDOM_NOISE_INCREMENT ? window.RANDOM_NOISE_INCREMENT : 0.1;
+      var inc = window.RANDOM_NOISE_INCREMENT;
       var scl = window.FLOWFIELD_SCALE ? window.FLOWFIELD_SCALE : 10;
       var cols, rows;
 
@@ -204,7 +204,7 @@ const Section = {
 
               v.setMag(1);
               flowfield[index] = v;
-              xoff += window.RANDOM_NOISE_INCREMENT ? window.RANDOM_NOISE_INCREMENT : 0.1;
+              xoff += window.RANDOM_NOISE_INCREMENT;
               
               if (window.SHOW_FIELD_VECTORS) {
                 const offset = scl / 2;
@@ -224,9 +224,9 @@ const Section = {
                 sk.pop();
               } 
             }
-            yoff += window.RANDOM_NOISE_INCREMENT ? window.RANDOM_NOISE_INCREMENT : 0.1;
+            yoff += window.RANDOM_NOISE_INCREMENT;
 
-            zoff += window.RANDOM_NOISE_ZOFF_INCREMENT ? window.RANDOM_NOISE_ZOFF_INCREMENT : 0.0003;
+            zoff += window.RANDOM_NOISE_ZOFF_INCREMENT;
           }
 
           if (!window.SHOW_FIELD_VECTORS) {
