@@ -4,13 +4,14 @@
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width: 400px;
+    max-width: 550px;
     padding: .5rem;
-    background-color: $body-bg;
+    background-color: darken($body-bg, 1);
 
     #flow-field-controller-toggler {
-        margin-left: auto;
+        margin: 0 auto;
         display: block;
+        font-size: 1rem;
     }
 
     .control-panel {
@@ -49,9 +50,6 @@ body {
                 max-height: 400px;
                 overflow: auto;
 
-                .control-panel-block {
-
-                }
 
                 .panel-mode-selected {
                     .panel-mode {
