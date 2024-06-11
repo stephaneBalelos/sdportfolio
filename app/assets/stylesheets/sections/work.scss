@@ -3,7 +3,7 @@
         .work-item {
             .work-item-content {
                 .work-item-title {
-                    span {
+                    span.work-item-title-anchor {
                         display: inline-block;
                         opacity: 0;
                         transform-origin: left center;
