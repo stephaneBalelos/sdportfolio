@@ -248,6 +248,14 @@ const Section = {
           // fr.html(sk.floor(sk.frameRate()));
           window.FRAME_RATE.fr = sk.floor(sk.frameRate());
         }
+
+        sk.windowResized = () => {
+          const width = window.innerWidth;
+          const height = window.innerHeight;
+          sk.resizeCanvas(width, height);
+          WIDTH = width
+          HEIGHT = height
+        }
       }
 
       const P5 = new p5(getSketchFunction(canvas));
