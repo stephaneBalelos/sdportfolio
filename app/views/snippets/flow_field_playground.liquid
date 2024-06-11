@@ -2,13 +2,13 @@
     <button id="flow-field-controller-toggler" class="btn btn-default" data-open-text="{{ 'flow_field_toggle_label_open' | translate }}" data-close-text="{{ 'flow_field_toggle_label_exit' | translate }}">
         {{ 'flow_field_toggle_label_open' | translate }}
     </button>
-    <div class="control-panel container">
+    <div data-lenis-prevent class="control-panel container">
         <div class="row my-3">
             <div class="col-12">
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#aboutFlowField" aria-expanded="false" aria-controls="aboutFlowField">
-                    What is as Flow Field?
+                <button about-flow-field-collapse class="btn btn-default fs-6 p-0" type="button" aria-expanded="false" aria-controls="aboutFlowField">
+                    {{ 'flow_field_intro_toggle' | translate}}
                   </button>
-                <div class="collapse" id="aboutFlowField">
+                <div class="about-flow-field-collapse" id="aboutFlowField">
                     <div class="card card-body">
                         <p class="font-weight-light fs-6">{{ "flow_field_intro" |  translate }}</p>
                     </div>

@@ -1,5 +1,5 @@
 .flow-field-playground {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
@@ -19,6 +19,17 @@
         overflow: hidden;
         transition: all .3s ease-in-out;
     }
+
+    .about-flow-field-collapse {
+        max-height: 0px;
+        overflow: hidden;
+        transition: all .3s ease-in-out;
+
+        &.open {
+            max-height: 500px;
+
+        }
+    }
 }
 
 @include media-breakpoint-up(md) {
@@ -28,7 +39,7 @@
 }
 @include media-breakpoint-up(lg) {
     .flow-field-playground {
-        max-width: 600px;
+        max-width: 100%;
     }
 }
 
@@ -48,13 +59,13 @@ body {
             }
             .control-panel {
                 max-height: 400px;
-                overflow: auto;
+                overflow: scroll;
 
 
                 .panel-mode-selected {
                     .panel-mode {
                         max-height: 0px;
-                        overflow: hidden;
+                        overflow: scroll;
                         transition: all .3s ease-in-out;
                         margin-left: 1.5rem;
                         font-size: .8rem;

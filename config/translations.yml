@@ -43,6 +43,11 @@ flow_field_intro:
   en: What you are seeing in the background is a simulation of particles flowing under the influence of a vector field. This is an example of the application of simple physical and mathematical principles to the creation of unique visual effects. Lern more about it <a href="https://en.wikipedia.org/wiki/Vector_field">here</a>.
   de: Was Sie im Hintergrund sehen, ist eine Simulation von Partikeln, die unter dem Einfluss eines Vektorfeldes fließen. Dies ist ein Beispiel für die Anwendung einfacher physikalischer und mathematischer Prinzipien zur Schaffung einzigartiger visueller Effekte. Erfahren Sie mehr darüber <a href="https://de.wikipedia.org/wiki/Vektorfeld">hier</a>.
 
+flow_field_intro_toggle:
+  en: What is this?
+  de: Was ist das?
+
+
 flow_field_mode:
   en: Flow Field Mode
   de: Flussfeldmodus

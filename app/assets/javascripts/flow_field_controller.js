@@ -126,6 +126,14 @@ const initController = () => {
         modePanelContainer.classList.add(`mode-${value}`)
     }
 
+    const aboutButton = controllerEl.querySelector('[about-flow-field-collapse]')
+    const aboutPanel = controllerEl.querySelector("#aboutFlowField")
+
+    aboutButton.addEventListener('click', function() {
+        aboutPanel.classList.toggle('open')
+        aboutButton.classList.toggle('open')
+    })
+
 
 };
 
