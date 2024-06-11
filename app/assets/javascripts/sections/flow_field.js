@@ -261,6 +261,7 @@ const Section = {
       const P5 = new p5(getSketchFunction(canvas));
 
       initController()
+      initScrollAnimation()
     }
 
   },

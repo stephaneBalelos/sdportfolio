@@ -22,7 +22,6 @@ const Section = {
     
 
     function shuffleChars(title, to) {
-      console.log(to)
       title.innerHTML = to
       title.innerHTML = title.textContent.replace(/([^\x00-\x80]|\w)/g, "<span class='letter' data-initial='$&'>$&</span>");
       const chars = [...title.querySelectorAll('.letter')];
@@ -36,7 +35,6 @@ const Section = {
               duration: 0.03,
               innerHTML: () => {
                 // iterations++;
-                console.log(char.dataset.initial)
                 if(position < iterations) {
                   return char.dataset.initial ? char.dataset.initial : " ";
                 } else {

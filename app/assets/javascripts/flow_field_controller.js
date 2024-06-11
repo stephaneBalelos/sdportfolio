@@ -12,7 +12,6 @@ const initController = () => {
 
     
     openButton.addEventListener('click', toggleController)
-    console.log(openButton)
 
 
     function toggleController () {
