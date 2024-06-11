@@ -1,143 +1,154 @@
-{% raw %}
-    <div id="flow-field-controller" class="flow-field-playground">
-        <button id="flow-field-controller-toggler" class="btn btn-default" data-open-text="play with the flow field" data-close-text="exit">
-            Play with the flow field
-        </button>
-        <div class="control-panel container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="control-panel-block mb-3 panel-mode-selected mode-random-noise">
-                        <div class="mb-1">Flow Field mode</div>
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="FLOWFIELD_MODE" id="modeSelect1" value="random-noise" checked>
-                                <label class="form-check-label" for="modeSelect1">
-                                    Random Noise
-                                </label>
+<div id="flow-field-controller" class="flow-field-playground">
+    <button id="flow-field-controller-toggler" class="btn btn-default" data-open-text="{{ 'flow_field_toggle_label_open' | translate }}" data-close-text="{{ 'flow_field_toggle_label_exit' | translate }}">
+        {{ 'flow_field_toggle_label_open' | translate }}
+    </button>
+    <div class="control-panel container">
+        <div class="row my-3">
+            <div class="col-12">
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#aboutFlowField" aria-expanded="false" aria-controls="aboutFlowField">
+                    What is as Flow Field?
+                  </button>
+                <div class="collapse" id="aboutFlowField">
+                    <div class="card card-body">
+                        <p class="font-weight-light fs-6">{{ "flow_field_intro" |  translate }}</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="control-panel-block mb-3 panel-mode-selected mode-random-noise">
+                    <div class="mb-1">{{ 'flow_field_mode' | translate }}</div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="FLOWFIELD_MODE" id="modeSelect1" value="random-noise" checked>
+                            <label class="form-check-label" for="modeSelect1">
+                                {{ 'flow_field_mode_perlin_noise' |  translate }}
+                            </label>
+                        </div>
+                        <div random-noise class="panel-mode">
+                            <div class="form-group">
+                                <label for="random-noise-inc-range" class="form-label">X / Y Increment: <span data-value-for="RANDOM_NOISE_INCREMENT">0.1</span></label>
+                                <input name="RANDOM_NOISE_INCREMENT" data-range-mult="0.1" type="range" value="1" class="form-range" id="random-noise-inc-range" min="1" max="10">
                             </div>
-                            <div random-noise class="panel-mode">
-                                <div class="form-group">
-                                    <label for="random-noise-inc-range" class="form-label">X / Y Increment: <span data-value-for="RANDOM_NOISE_INCREMENT">0.1</span></label>
-                                    <input name="RANDOM_NOISE_INCREMENT" data-range-mult="0.1" type="range" value="1" class="form-range" id="random-noise-inc-range" min="1" max="10">
-                                </div>
-                                <div class="form-group">
-                                    <label for="random-noise-zoff-inc" class="form-label">Z Increment <span data-value-for="RANDOM_NOISE_ZOFF_INCREMENT">0.0003</span></label>
-                                    <input name="RANDOM_NOISE_ZOFF_INCREMENT" data-range-mult="0.00001" type="range" value="3" class="form-range" id="random-noise-zoff-inc" min="1" max="100">
-                                </div>
+                            <div class="form-group">
+                                <label for="random-noise-zoff-inc" class="form-label">Z Increment <span data-value-for="RANDOM_NOISE_ZOFF_INCREMENT">0.0003</span></label>
+                                <input name="RANDOM_NOISE_ZOFF_INCREMENT" data-range-mult="0.00001" type="range" value="3" class="form-range" id="random-noise-zoff-inc" min="1" max="100">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="FLOWFIELD_MODE" id="modeSelect2" value="attractor">
-                                <label class="form-check-label" for="modeSelect2">
-                                    Attractors
-                                </label>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="FLOWFIELD_MODE" id="modeSelect2" value="attractor">
+                            <label class="form-check-label" for="modeSelect2">
+                                {{ 'flow_field_mode_attractors' | translate }}
+                            </label>
+                        </div>
+                        <div attractor class="panel-mode">
+                            <div class="mb-1">{{ 'flow_field_mode_attractors_center' | translate }}</div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="ATTRACTOR_CENTER" id="attractor-center-select1" value="center" checked>
+                                    <label class="form-check-label" for="attractor-center-select1">
+                                        {{ 'flow_field_center_option_center' | translate }}
+                                    </label>
+                                </div>
                             </div>
-                            <div attractor class="panel-mode">
-                                <div class="mb-1">Attractor center</div>
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ATTRACTOR_CENTER" id="attractor-center-select1" value="center" checked>
-                                        <label class="form-check-label" for="attractor-center-select1">
-                                            Center
-                                        </label>
-                                    </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="ATTRACTOR_CENTER" id="attractor-center-select2" value="mouse-follow">
+                                    <label class="form-check-label" for="attractor-center-select2">
+                                        {{ 'flow_field_center_option_mouse_follow' | translate }}
+                                    </label>
                                 </div>
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ATTRACTOR_CENTER" id="attractor-center-select2" value="mouse-follow">
-                                        <label class="form-check-label" for="attractor-center-select2">
-                                            Follow Mouse
-                                        </label>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="ATTRACTOR_CENTER" id="attractor-center-select3" value="mouse-click">
+                                    <label class="form-check-label" for="attractor-center-select3">
+                                        {{ 'flow_field_center_option_mouse_click' | translate }}
+                                    </label>
                                 </div>
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ATTRACTOR_CENTER" id="attractor-center-select3" value="mouse-click">
-                                        <label class="form-check-label" for="attractor-center-select3">
-                                            Mouse Click
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="vortex-angle-range" class="form-label">Vortex radius <span data-value-for="ATTRACTOR_RADIUS">0</span></label>
-                                    <input name="ATTRACTOR_RADIUS" data-range-mult="1" type="range" value="0" class="form-range" id="vortex-angle-range" min="0" max="500">
-                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="vortex-angle-range" class="form-label">{{ 'flow_field_mode_attractors_radius' | translate }} <span data-value-for="ATTRACTOR_RADIUS">0</span></label>
+                                <input name="ATTRACTOR_RADIUS" data-range-mult="1" type="range" value="0" class="form-range" id="vortex-angle-range" min="0" max="500">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="FLOWFIELD_MODE" id="modeSelect3" value="vortex">
-                                <label class="form-check-label" for="modeSelect3">
-                                    Vortex
-                                </label>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="FLOWFIELD_MODE" id="modeSelect3" value="vortex">
+                            <label class="form-check-label" for="modeSelect3">
+                                {{ 'flow_field_mode_vortex' | translate }}
+                            </label>
+                        </div>
+                        <div vortex class="panel-mode">
+                            <div class="mb-1">{{ 'flow_field_mode_vortex_center' | translate }} </div>
+                            <div class="form-group">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="VORTEX_CENTER" id="vortex-center-select1" value="center" checked>
+                                    <label class="form-check-label" for="vortex-center-select1">
+                                        {{ 'flow_field_center_option_center' | translate }}
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="VORTEX_CENTER" id="vortex-center-select2" value="mouse-follow">
+                                    <label class="form-check-label" for="vortex-center-select2">
+                                        {{ 'flow_field_center_option_mouse_follow' | translate }}
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="VORTEX_CENTER" id="vortex-center-select3" value="mouse-click">
+                                    <label class="form-check-label" for="vortex-center-select3">
+                                        {{ 'flow_field_center_option_mouse_click' | translate }}
+                                    </label>
+                                </div>
                             </div>
-                            <div vortex class="panel-mode">
-                                <div class="mb-1">Vortex center</div>
-                                <div class="form-group">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="VORTEX_CENTER" id="vortex-center-select1" value="center" checked>
-                                        <label class="form-check-label" for="vortex-center-select1">
-                                            Center
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="VORTEX_CENTER" id="vortex-center-select2" value="mouse-follow">
-                                        <label class="form-check-label" for="vortex-center-select2">
-                                            Follow Mouse
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="VORTEX_CENTER" id="vortex-center-select3" value="mouse-click">
-                                        <label class="form-check-label" for="vortex-center-select3">
-                                            Mouse Click
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="vortex-angle-range" class="form-label">Vortex angle <span data-value-for="VORTEX_ANGLE">0.0003</span></label>
-                                    <input name="VORTEX_ANGLE" data-range-mult="1" type="range" value="45" class="form-range" id="vortex-angle-range" min="-90" max="90">
-                                </div>
-                                <div class="form-group">
-                                    <label for="vortex-angle-range" class="form-label">Attractor radius <span data-value-for="VORTEX_RADIUS">0</span></label>
-                                    <input name="VORTEX_RADIUS" data-range-mult="1" type="range" value="0" class="form-range" id="vortex-angle-range" min="0" max="500">
-                                </div>
+                            <div class="form-group">
+                                <label for="vortex-angle-range" class="form-label"> {{ 'flow_field_mode_vortex_angle' | translate }} <span data-value-for="VORTEX_ANGLE">0.0003</span></label>
+                                <input name="VORTEX_ANGLE" data-range-mult="1" type="range" value="45" class="form-range" id="vortex-angle-range" min="-90" max="90">
+                            </div>
+                            <div class="form-group">
+                                <label for="vortex-angle-range" class="form-label">{{ 'flow_field_mode_vortex_radius' | translate }} <span data-value-for="VORTEX_RADIUS">0</span></label>
+                                <input name="VORTEX_RADIUS" data-range-mult="1" type="range" value="0" class="form-range" id="vortex-angle-range" min="0" max="500">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="control-panel-block mb-2">
-                        <div class="form-group">
-                            <label for="framerate" class="form-label">Frame Rate: <span fr-viewer>0</span> fps</label>
-                        </div>
-                    </div>
-                    <div class="control-panel-block mb-3">
-                        <div class="form-group">
-                            <label for="flow-field-scale" class="form-label">Scale: <span data-value-for="FLOWFIELD_SCALE">10</span></label>
-                            <input name="FLOWFIELD_SCALE" type="range" value="10" class="form-range" id="flow-field-scale" min="10" step="1" max="100">
-                        </div>
-                    </div>
-                    <div class="control-panel-block mb-3">
-                        <div class="form-group">
-                            <label for="flow-field-particles-count" class="form-label">Particle count: <span data-value-for="PARTICLES_COUNT">100</span></label>
-                            <input name="PARTICLES_COUNT" type="range" value="100" class="form-range" id="flow-field-particles-count" min="1" step="1" max="300">
-                        </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="control-panel-block mb-2">
+                    <div class="form-group">
+                        <label for="framerate" class="form-label">{{ 'flow_field_frame_rate' | translate }}: <span fr-viewer>0</span> fps</label>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="control-panel-block mb-3">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input name="SHOW_FIELD_VECTORS" class="form-check-input" type="checkbox" value="true" id="flow-field-show-vectors">
-                                <label class="form-check-label" for="flow-field-show-vectors">
-                                  Show fields vectors
-                                </label>
-                              </div>
-                        </div>
+                <div class="control-panel-block mb-3">
+                    <div class="form-group">
+                        <label for="flow-field-scale" class="form-label">{{ 'flow_field_scale' | translate }}: <span data-value-for="FLOWFIELD_SCALE">10</span></label>
+                        <input name="FLOWFIELD_SCALE" type="range" value="10" class="form-range" id="flow-field-scale" min="10" step="1" max="100">
+                    </div>
+                </div>
+                <div class="control-panel-block mb-3">
+                    <div class="form-group">
+                        <label for="flow-field-particles-count" class="form-label">{{ 'flow_field_particle_count' | translate }}: <span data-value-for="PARTICLES_COUNT">100</span></label>
+                        <input name="PARTICLES_COUNT" type="range" value="100" class="form-range" id="flow-field-particles-count" min="1" step="1" max="300">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="control-panel-block mb-3">
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input name="SHOW_FIELD_VECTORS" class="form-check-input" type="checkbox" value="true" id="flow-field-show-vectors">
+                            <label class="form-check-label" for="flow-field-show-vectors">
+                              {{ 'flow_field_show_vectors' | translate }}
+                            </label>
+                          </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-{% endraw %}
+</div>

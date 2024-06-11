@@ -33,10 +33,12 @@ settings:
 ---
 <nav id="{{ section.anchor_id }}" class="navigation-section container" {{ section.locomotive_attributes }}>
   <a class="nav-brand" href="{% path_to index %}">Stephane<span extra-name> Michel</span><span extra-name> Ange,</span> Dondyas<span extra-name> Imepino</span> <span cursor>|</span></a>
-  <ul class="nav-list">
+  <ul class="nav-list mb-0">
     {% comment %} <li class="nav-item">Work</li> {% endcomment %}
-    <li class="nav-item">About</li>
-    <li class="nav-item">Contact</li>
+
+    <li class="nav-item fs-6 d-flex align-items-center">
+      {% locale_switcher label: 'iso', sep: ' | ' %}
+    </li>
   </ul>
   
 </nav>

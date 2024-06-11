@@ -47,10 +47,10 @@ To use your global section, just add the following code in your layout template:
       <h2 class="contact-title">{{ section.settings.title}}</h2>
 
       <div id="contactFormSuccessMsg" class="alert alert-success d-none" role="alert">
-        Thank you for your message. I will get back to you as soon as possible.
+        {{ 'form_submit_success_message' | translate }}
       </div>
       <div id="contactFormErrorMsg" class="alert alert-danger d-none" role="alert">
-        Oops! Something went wrong. Please try again.
+        {{ 'form_submit_error_message' | translate }}
       </div>
     </div>
   </div>

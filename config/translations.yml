@@ -3,6 +3,108 @@
 #   {{ 'hello_world' | translate }}
 #
 
+form_input_label_name:
+  en: What's your name?
+  de: Wie ist dein Name?
+
+form_input_label_email:
+  en: What's your email?
+  de: Wie ist dein Email?
+
+form_input_label_message:
+  en: How can we help you?
+  de: Wie kann ich Ihnen helfen?
+
+form_submit_success_message:
+  en: Success message
+  de: Erfolgsmeldung
+
+form_submit_error_message:
+  en: Error message
+  de: Fehlermeldung
+
 form_btn_submit_label:
   en: Connect
-  de: Connect
+  de: Verbinden
+
+form_btn_submitting_label:
+  de: Connecting...
+  en: Verbindung...
+
+flow_field_toggle_label_open:
+  en: Play with the flow field
+  de: Mit dem Flussfeld spielen
+
+flow_field_toggle_label_exit:
+  en: Exit Playground
+  de: Playground verlassen
+
+flow_field_intro:
+  en: What you are seeing in the background is a simulation of particles flowing under the influence of a vector field. This is an example of the application of simple physical and mathematical principles to the creation of unique visual effects. Lern more about it <a href="https://en.wikipedia.org/wiki/Vector_field">here</a>.
+  de: Was Sie im Hintergrund sehen, ist eine Simulation von Partikeln, die unter dem Einfluss eines Vektorfeldes fließen. Dies ist ein Beispiel für die Anwendung einfacher physikalischer und mathematischer Prinzipien zur Schaffung einzigartiger visueller Effekte. Erfahren Sie mehr darüber <a href="https://de.wikipedia.org/wiki/Vektorfeld">hier</a>.
+
+flow_field_mode:
+  en: Flow Field Mode
+  de: Flussfeldmodus
+
+flow_field_frame_rate:
+  en: Frame Rate
+  de: Bildrate
+
+flow_field_scale:
+  en: Scale
+  de: Skala
+
+flow_field_particle_count:
+  en: Particle Count
+  de: Partikelanzahl
+
+flow_field_show_vectors:
+  en: Show Vectors Field
+  de: Vektorfeld anzeigen
+
+flow_field_mode_perlin_noise:
+  en: Perlin Noise <a href="https://en.wikipedia.org/wiki/Perlin_noise">?</a>
+  de: Perlin-Rauschen <a href="https://de.wikipedia.org/wiki/Perlin-Noise">?</a>
+
+flow_field_center_option_center:
+  en: Screen center
+  de: Bildschirmmitte
+
+flow_field_center_option_mouse_follow:
+  en: Mouse follow
+  de: Maus folgen
+
+flow_field_center_option_mouse_click:
+  en: Mouse click
+  de: Maus klicken
+
+flow_field_mode_attractors:
+  en: Attractors
+  de: Attraktoren
+
+flow_field_mode_attractors_center:
+  en: Attractor center
+  de: Attraktorzentrum
+
+flow_field_mode_attractors_radius:
+  en: Attractor radius
+  de: Attraktorradius
+
+flow_field_mode_vortex:
+  en: Vortex
+  de: Vortex
+
+flow_field_mode_vortex_center:
+  en: Vortex center
+  de: Vortex-Zentrum
+
+flow_field_mode_vortex_angle:
+  en: Vortex angle
+  de: Vortexwinkel
+
+flow_field_mode_vortex_radius:
+  en: Vortex radius
+  de: Vortexradius
+
+

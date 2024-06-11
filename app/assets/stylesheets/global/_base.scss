@@ -6,6 +6,15 @@ body {
     main {
       transition: all .3s ease-in-out;
     }
+
+    #locale-switcher {
+      a {
+        text-decoration: none;
+      }
+      a.current {
+        color: darken($body-color, 20%);
+      }
+    }
 }
 
 .btn {
