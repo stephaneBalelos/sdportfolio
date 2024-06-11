@@ -1,5 +1,6 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import utils from './utils';
 gsap.registerPlugin(ScrollTrigger)
 
 
@@ -9,7 +10,14 @@ const initLenis = () => {
 
 
     lenis.on('scroll', (e) => {
-        console.log(e)
+        let offset = window.scrollY / (document.body.offsetHeight - window.innerHeight)
+        if(offset == 0) {
+            window.FLOWFIELD_MODE = "random-noise"
+        }
+        if(offset > 0) {
+            window.FLOWFIELD_MODE = "vortex"
+        }
+        window.VORTEX_ANGLE = utils.lerp(-80, 80, offset)
     })
 
     lenis.on('scroll', ScrollTrigger.update)
@@ -32,6 +40,5 @@ const initLenis = () => {
 }
 
 window.addEventListener('load', () => {
-    console.log('load')
     initLenis()
 })

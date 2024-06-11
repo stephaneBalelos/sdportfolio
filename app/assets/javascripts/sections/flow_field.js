@@ -6,7 +6,7 @@ const Section = {
 
   load: (section) => {
     const canvas = section.querySelector('canvas')
-    let MODE = "random-noise" // "attractor-center" | "random-noise-static"
+    let MODE = "vortex" // "attractor-center" | "random-noise-static"
     let PARTICLES_COUNT = 100
 
     window.BODY_COLOR = getComputedStyle(document.body).getPropertyValue('--body-color')
@@ -29,13 +29,13 @@ const Section = {
     })
 
 
-    window.FLOWFIELD_MODE = "vortex" // "random-noise" | "attractor" | "vortex" | "random-noise-static
+    window.FLOWFIELD_MODE = "random-noise" // "random-noise" | "attractor" | "vortex" | "random-noise-static
     window.FLOWFIELD_SCALE = 10
     window.SHOW_FIELD_VECTORS = false
-    window.PARTICLES_COUNT = 50
+    window.PARTICLES_COUNT = 75
 
     // Mode Params Random Noise
-    window.RANDOM_NOISE_INCREMENT = 0.2
+    window.RANDOM_NOISE_INCREMENT = 0.1
     window.RANDOM_NOISE_ZOFF_INCREMENT = 0.00003
 
     // Mode Params Attractor
@@ -261,7 +261,6 @@ const Section = {
       const P5 = new p5(getSketchFunction(canvas));
 
       initController()
-      initScrollAnimation()
     }
 
   },
