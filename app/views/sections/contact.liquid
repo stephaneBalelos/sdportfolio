@@ -69,7 +69,7 @@ To use your global section, just add the following code in your layout template:
         <textarea class="form-control" placeholder="How can I help you" id="contactRequestInputMessage" name="content[message]" style="min-height: 150px"></textarea>
         <label for="contactRequestInputMessage">{{ 'form_input_label_message' |  translate }}</label>
       </div>
-      <button type="submit" class="btn btn-default mt-3 d-block mx-auto" data-initial="connect" data-loading="connecting...">
+      <button type="submit" class="btn btn-default mt-3 d-block mx-auto" data-initial="{{ 'form_btn_submit_label' |  translate }}" data-loading="{{ 'form_btn_submitting_label' |  translate }}">
         <span>[</span> <div btn-text class="d-inline">{{ 'form_btn_submit_label' |  translate }}</div> <span>]</span>
       </button>
       {% endmodel_form %}
